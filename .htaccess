@@ -1,0 +1,15 @@
+AddDefaultCharset utf-8
+
+AddHandler application/x-httpd-php .php .htm .html
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|uploads|css|js|fonts|lib|files|assets|robots\.txt)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+
+# RewriteCond %{HTTPS} off
+# First rewrite to HTTPS:
+# Don't put www. here. If it is already there it will be included, if not
+# the subsequent rule will catch it.
+# RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Now, rewrite any request to the wrong domain to use www.
+# RewriteCond %{HTTP_HOST} !^www\.
+# RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
